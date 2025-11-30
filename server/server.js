@@ -7,6 +7,7 @@ import * as Sentry from "@sentry/node"
 import { clerkWebhooks } from './controllers/webhooks.controller.js'
 import companyRoutes from './routes/company.routes.js'
 import connectCloudinary from './config/cloudinary.js'
+import jobRoutes from './routes/jobRoutes.js'
 
 
 
@@ -34,6 +35,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 app.post('/webhooks',clerkWebhooks)
 
 app.use('/api/company',companyRoutes)
+app.use('/api/jobs',jobRoutes)
 
 //port
 

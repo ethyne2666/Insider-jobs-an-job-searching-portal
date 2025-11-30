@@ -1,0 +1,30 @@
+
+# Comments start with a hash symbol
+
+# Ignore all files ending with .log in all directories
+*.log
+
+# Ignore all files with the name "config.json" at any level
+config.json
+
+# Ignore the entire "build" directory (and its contents) in the root
+/build/
+
+# Ignore the "node_modules" directory at any level
+node_modules/
+
+# Ignore files specific to macOS
+.DS_Store
+
+# Ignore temporary files created by the operating system
+Thumbs.db
+
+# Ignore environment variable files, which contain sensitive data
+.env*
+
+# Exception: do not ignore "important.log", even though *.log is ignored
+!important.log
+
+# Ignore all files in the "docs" directory, but keep the directory itself
+docs/*
+!docs/

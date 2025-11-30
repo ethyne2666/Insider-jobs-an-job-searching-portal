@@ -20,7 +20,7 @@ node_modules/
 Thumbs.db
 
 # Ignore environment variable files, which contain sensitive data
-.env*
+.env
 
 # Exception: do not ignore "important.log", even though *.log is ignored
 !important.log

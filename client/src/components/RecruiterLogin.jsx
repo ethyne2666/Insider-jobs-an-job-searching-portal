@@ -17,7 +17,7 @@ const RecruiterLogin = () => {
     const onSubmitHandler = async(e) => {
         e.preventDefault()
 
-        if (state == "Sign Up" && !isTextDataSubmited) {
+        if (state == "SignUp" && !isTextDataSubmited) {
             setIsTextDataSubmited(true)
             
         }
@@ -35,20 +35,13 @@ useEffect(()=>{
 })
 
 
-
-
-
-
-
-
-
   return (
     <div className='absolute top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center'>
       <form onSubmit={onSubmitHandler} className='relative bg-white p-10 rounded-xl text-slate-500'>
         <h1 className='text-center text-2xl text-neutral-700 font-medium'>Recruiter {state}</h1>
         <p className='text-sm'>Welcome back! Please sign in to continue</p>
 
-        {state === "Sign Up" && isTextDataSubmited
+        {state === "SignUp" && isTextDataSubmited
          ?<>
          <div className='flex items-center gap-4 my-10'>
             <label htmlFor="image">

@@ -79,7 +79,7 @@ export const loginCompany = async (req,res) => {
 
         const company = await Company.findOne({email})
 
-        if (bcrypt.compare(password, company.password)) {
+        if (await bcrypt.compare(password, company.password)) {
 
             res.json({
                 success: true,
@@ -108,6 +108,18 @@ export const loginCompany = async (req,res) => {
 // Get Company data
 
 export const getCompanyData = async(req,res) => {
+
+    
+    try {
+        const company = req.company
+
+        res.json({success:true, company})
+        
+    } catch (error) {
+
+        res.json({success:false, message:error.message})
+        
+    }
 
 }
 
@@ -162,6 +174,18 @@ export const getCompanyJobApplicants = async(req,res) => {
 // Get Company Posted Jobs
 
 export const getCompanyPostedJobs = async(req,res) =>{
+    try {
+        const companyId = req.company._id
+        const jobs = await Job.find({companyId})
+
+
+        //(ToDo) Adding No. of applications info in data
+        res.json({success:true, jobsData: jobs})
+
+    } catch (error) {
+        res.json({success:false, message: error.message})
+
+    }
 
 }
 
@@ -175,5 +199,23 @@ export const ChangeJobApplicationsStatus = async(req,res) => {
 //Change job visibility
 
 export const changeVisiblity = async (req,res) => {
+    try {
+
+        const {id} = req.body
+        const companyId = req.company._id
+        const job = await Job.findById(id)
+        if (companyId.toString() === job.companyId.toString()) {
+            job.visible = !job.visible
+            
+        }
+
+        await job.save()
+
+        res.json({success:true, job})
+        
+    } catch (error) {
+        res.json({success:false, message:error.message})
+        
+    }
 
 }

@@ -8,6 +8,8 @@ import { clerkWebhooks } from './controllers/webhooks.controller.js'
 import companyRoutes from './routes/company.routes.js'
 import connectCloudinary from './config/cloudinary.js'
 import jobRoutes from './routes/jobRoutes.js'
+import userRoutes from './routes/user.routes.js'
+import {clerkMiddleware} from '@clerk/express'
 
 
 
@@ -24,6 +26,7 @@ await connectCloudinary()
 
 app.use(cors())
 app.use(express.json())
+app.use(clerkMiddleware())
 
 //Routes
 
@@ -36,6 +39,7 @@ app.post('/webhooks',clerkWebhooks)
 
 app.use('/api/company',companyRoutes)
 app.use('/api/jobs',jobRoutes)
+app.use('/api/users', userRoutes)
 
 //port
 

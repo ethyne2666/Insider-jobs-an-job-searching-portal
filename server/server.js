@@ -24,18 +24,26 @@ await connectCloudinary()
 
 //Middlewares
 
-app.use(cors())
-app.use(express.json())
 app.use(clerkMiddleware())
+
+app.use(express.json())
+app.use(cors())
 
 //Routes
 
 app.get('/',(req,res)=>res.send('API Working'))
+
+// Correct webhook route (raw body required)
+app.post(
+  '/api/webhooks/clerk',
+  express.raw({ type: 'application/json' }),
+  clerkWebhooks
+)
+
 app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
 
-app.post('/webhooks',clerkWebhooks)
 
 app.use('/api/company',companyRoutes)
 app.use('/api/jobs',jobRoutes)
